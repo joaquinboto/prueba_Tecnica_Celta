@@ -2,7 +2,7 @@
 
 In the project directory, you can run:
 
-## `git clone https://github.com/joaquinboto/prueba-tecnica.git`
+## `git clone https://github.com/joaquinboto/prueba_Tecnica_Celta.git`
 
 
 ### On folder /api `npm install` & `npm start`
