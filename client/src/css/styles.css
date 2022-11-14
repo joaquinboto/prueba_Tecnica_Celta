@@ -1,0 +1,55 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    background-color: #ffff;
+    position: absolute;
+    width: 760px;
+    height: 505px;
+    left: 339px;
+    top: 244px;
+    }
+
+
+.form_inputs{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    padding: 16px;
+    width: 760px;
+    height: 248px;}
+
+.form_inputs > input {
+    width: 728px;
+    height: 56px;
+}
+
+.select{
+    width: 324px;
+    height: 56px;
+}
+
+.div_select{ 
+    width: 760px;
+    height: 84px;
+    display: flex;
+    justify-content: space-around; 
+}
+
+.btn_save {
+    background: #1976D2;
+    width: 99px;
+    height: 36px;
+    border-radius: 4px;
+    margin-left: 10px;
+}
+
+.btn_cancel {
+    width: 91px;
+    height: 36px;
+    border-radius: 4px;
+    margin-left: 10px;
+
+}
