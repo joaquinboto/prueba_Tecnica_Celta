@@ -13,10 +13,14 @@ const form = async (req, res, next) => {
             continente,
             contraseña
         })
+        const reg = await Region.create({
+            regiones: continente
+        })
         const pais = await Pais.create({
             paises: paisesArray
         })
-        await pais.createRegion(continente)
+        console.log(pais.__proto__)
+        await pais.setRegion(reg)
         res.status(200).json(newForm)
     } catch (error) {
         res.json(error.messages)
