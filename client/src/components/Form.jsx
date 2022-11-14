@@ -38,7 +38,7 @@ function Form() {
         continente: "europe"
         },
         {id:5,
-            continente: "oceania"
+        continente: "oceania"
         }]
 
 const handleChange = (e) => {
@@ -65,6 +65,7 @@ setErrors(validate({
     }
 
     const apiCall = async (region) => {
+        console.log(region);
         const regiones = await axios.get(`https://restcountries.com/v3.1/region/${region}`)
         setPaises({
             paises: regiones.data,
@@ -95,14 +96,10 @@ setErrors(validate({
             <input type="text" onChange={ (e) => handleChange(e)} name='contraseña' placeholder='contraseña'/>
         </div>
         <div className='div_select'>
-        <select onChange={(e) => {
-            region.map((e) => {
-                apiCall(e.continente)
-            })
-        }} className='select' defaultValue={'DEFAULT'} name="" id="">
+        <select onChange={(e) => apiCall(e.target.value)} className='select' defaultValue={'DEFAULT'} name="" id="">
         {region.map((e) => {
                     return(
-                        <option key={e.id} >
+                        <option value={e.continente} key={e.id} >
                             {e.continente}
                         </option>
                     )
