@@ -8,8 +8,8 @@ In the project directory, you can run:
 ### On folder /api `npm install` & `npm start`
 en el archivo .env , poner las credenciales de postgres
 
-DB_USER=usuariodepostgres
-DB_PASSWORD=passwordDePostgres
-DB_NAME=nombreDeLaDB
+- DB_USER=usuariodepostgres
+- DB_PASSWORD=passwordDePostgres
+- DB_NAME=nombreDeLaDB
 
 ### On folder /client `npm install` & `npm start`
