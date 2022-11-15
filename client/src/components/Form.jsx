@@ -17,11 +17,13 @@ function Form() {
           errors.nombre = 'Character no valid';
         } else if (!(/^[a-zA-ZÑñ].*/.test(input.nombre))) {
             errors.nombre = 'Names cant begin with a number'
-        }else if (!input.contraseña) {
+        } else if (!input.contraseña) {
           errors.contraseña = 'Password is required';
-        } else if (input.contraseña < 6 ) {
-            errors.contraseña = 'Number must be less than 5 and greater than 0';
-        }
+        } else if (input.contraseña.length < 6 ) {
+            errors.contraseña = 'Error';
+        } else if (!input.apellido) {
+            errors.apellido = 'Falta el apellido'
+        } 
         console.log('ERROR', errors);
         return errors;
     }
@@ -42,25 +44,27 @@ function Form() {
         }]
 
 const handleChange = (e) => {
-
     setForm({
         ...form,
         [e.target.name]: e.target.value
     })
-
-setErrors(validate({
+    setErrors(validate({
     ...form,
     [e.target.name]: e.target.value
-}))
+    }))
 }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         if(Object.keys(errors).length === 0) {
-            await axios.post('http://localhost:3001/form' , form)
-            alert('Guardado')
-        }   else {
-            alert('Hay un error')
+            try {
+                await axios.post('http://localhost:3001/form' , form)
+                alert('Guardado')
+            } catch (error) {
+                console.log(error)
+            }
+        }  else {
+            alert('Error')
         }
     }
 
@@ -91,20 +95,31 @@ setErrors(validate({
     <div className='form'>
         <h1>Formulario</h1>
         <div className='form_inputs'>
-            <input type="text" onChange={ (e) => handleChange(e)} name='nombre' placeholder='nombre' />
-            <input type="text"  onChange={ (e) => handleChange(e)} name='apellido' placeholder='apellido' />
-            <input type="text" onChange={ (e) => handleChange(e)} name='contraseña' placeholder='contraseña'/>
+            <span className='span_nombre'>Nombre</span>
+            <span className='span_apellido'>Apellido</span>
+            <span className='span_pw'>Contraseña</span>
+            <input type="text" onChange={ (e) => handleChange(e)} name='nombre'  />
+            {errors.nombre ? <div><span>Error falta el nombre</span></div> : null}
+            <input type="text"  onChange={ (e) => handleChange(e)} name='apellido'  />
+            {errors.apellido ? <div><span>Error falta el apellido</span></div> : null}
+            <input type="text" onChange={ (e) => handleChange(e)} name='contraseña' />
+            {errors.contraseña ? <div><span>La contraseña tiene que ser mayor a 6 digitos</span></div> : null}
         </div>
         <div className='div_select'>
+            <span className='span_region'>Region</span>
         <select onChange={(e) => apiCall(e.target.value)} className='select' defaultValue={'DEFAULT'} name="" id="">
+        <option value="DEFAULT" disabled="disabled">
+                Seleccione Pais
+        </option>
         {region.map((e) => {
                     return(
                         <option value={e.continente} key={e.id} >
                             {e.continente}
                         </option>
                     )
-                })}
+        })}
         </select>
+            <span className='span_country'>Pais</span>
             <select onChange={(e) => handleSelect(e)} className='select' defaultValue={'DEFAULT'} name="" id="">
                 <option value="DEFAULT" disabled="disabled">
                 Seleccione Pais
@@ -119,7 +134,7 @@ setErrors(validate({
             </select>
         </div>
         <div>
-            <button className='btn_save' onClick={(e) => handleSubmit(e)}>Guardar</button>
+            <button className='btn_save' disabled={Object.keys(errors).length === 0 ? false : true} onClick={(e) => handleSubmit(e)}>Guardar</button>
             <button className='btn_cancel'>Cancelar</button>
         </div>
     </div>
