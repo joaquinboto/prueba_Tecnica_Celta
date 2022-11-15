@@ -24,11 +24,22 @@
 .form_inputs > input {
     width: 728px;
     height: 56px;
+    border-radius: 5px;
+    border: 1px solid black
 }
+
+
 
 .select{
     width: 324px;
     height: 56px;
+    border-radius: 5px;
+    font-size: 16px;
+
+}
+
+.select > option {
+    font-size: 16px;
 }
 
 .div_select{ 
@@ -44,6 +55,10 @@
     height: 36px;
     border-radius: 4px;
     margin-left: 10px;
+    color: white;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .btn_cancel {
@@ -51,5 +66,56 @@
     height: 36px;
     border-radius: 4px;
     margin-left: 10px;
+    border: none;
+    color: #1976D2;
+    font-weight: bold;
+    cursor: pointer;
 
+}
+
+span {
+    font-size: 13px;
+    background: #fff;
+    letter-spacing: 1px;
+}
+
+.span_nombre {
+    position: absolute;
+    top: 103px;
+    left: 51px;
+    z-index: 9;
+    
+}
+
+.span_apellido {
+    position: absolute;
+    top: 187px;
+    left: 51px;
+    z-index: 9;
+    background: #fff;
+}
+
+.span_pw {
+    position: absolute;
+    top: 270px;
+    left: 51px;
+    z-index: 9;
+    background: #fff;
+}
+
+
+.span_region {
+    position: absolute;
+    top: 356px;
+    left: 51px;
+    z-index: 9;
+    background: #fff;
+}
+
+.span_country {
+    position: absolute;
+    top: 356px;
+    left: 442px;
+    background: #fff;
+    z-index: 1;
 }
