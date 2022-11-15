@@ -20,7 +20,7 @@ function Form() {
         } else if (!input.contraseña) {
           errors.contraseña = 'Password is required';
         } else if (input.contraseña.length < 6 ) {
-            errors.contraseña = 'Error';
+            errors.contraseña = 'La contraseña debe ser mayor a 6 digitos';
         } else if (!input.apellido) {
             errors.apellido = 'Falta el apellido'
         } 
@@ -64,7 +64,7 @@ const handleChange = (e) => {
                 console.log(error)
             }
         }  else {
-            alert('Error')
+            alert(`${errors.nombre || errors.contraseña || errors.apellido}`)
         }
     }
 
@@ -99,11 +99,8 @@ const handleChange = (e) => {
             <span className='span_apellido'>Apellido</span>
             <span className='span_pw'>Contraseña</span>
             <input type="text" onChange={ (e) => handleChange(e)} name='nombre'  />
-            {errors.nombre ? <div><span>Error falta el nombre</span></div> : null}
             <input type="text"  onChange={ (e) => handleChange(e)} name='apellido'  />
-            {errors.apellido ? <div><span>Error falta el apellido</span></div> : null}
             <input type="text" onChange={ (e) => handleChange(e)} name='contraseña' />
-            {errors.contraseña ? <div><span>La contraseña tiene que ser mayor a 6 digitos</span></div> : null}
         </div>
         <div className='div_select'>
             <span className='span_region'>Region</span>
@@ -134,7 +131,7 @@ const handleChange = (e) => {
             </select>
         </div>
         <div>
-            <button className='btn_save' disabled={Object.keys(errors).length === 0 ? false : true} onClick={(e) => handleSubmit(e)}>Guardar</button>
+            <button className='btn_save'  onClick={(e) => handleSubmit(e)}>Guardar</button>
             <button className='btn_cancel'>Cancelar</button>
         </div>
     </div>
